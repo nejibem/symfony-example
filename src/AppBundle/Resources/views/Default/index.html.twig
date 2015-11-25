@@ -1,0 +1,21 @@
+{% extends 'AppBundle:Template:base.html.twig' %}
+
+{% block title %}
+    Welcome
+{% endblock %}
+
+{% block body %}
+
+    <div class='row'>
+        <div class='col-md-12'>
+
+            <div class="page-header">
+                <h1>Welcome</h1>
+            </div>
+
+            <p>Hi {{ app.user.getUsername() }}, welcome to this site!</p>
+
+        </div>
+    </div>
+
+{% endblock %}

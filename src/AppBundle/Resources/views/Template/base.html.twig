@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="{{ asset('bundles/user/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet" media="screen">
+    {% block stylesheets %}{% endblock %}
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+
+<body>
+
+<div class="container">
+    <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-3">
+        {% if app.user %}
+            <a href="/" class="btn btn-default navbar-btn">Home</a>
+            <a href="/admin/user" class="btn btn-default navbar-btn">User Admin</a>
+            <a href="/logout" class="btn btn-default navbar-btn">Logout</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="container">
+    {% block body %}
+    {% endblock %}
+</div>
+
+{% block javascripts %}{% endblock %}
+
+<!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+<script src="{{ asset('bundles/user/vendor/jquery/jquery-2.1.4.js') }}"></script>
+<!-- Include all JavaScripts, compiled by Assetic -->
+<script src="{{ asset('bundles/user/vendor/bootstrap/js/bootstrap.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+# authentication stuff
+
+_index:
+    pattern:  /
+    defaults: { _controller: AppBundle:Default:index }
+
+login:
+    pattern:  /login
+    defaults: { _controller: AppBundle:Auth:login }
+
+login_check:
+    pattern:  /login_check
+
+logout:
+    path:   /logout
+
+# user admin
+
+user_index:
+    pattern:  /admin/user
+    defaults: { _controller: AppBundle:User:index }
+
+user_add:
+    pattern:  /admin/user/add
+    defaults: { _controller: AppBundle:User:add }
+
+user_edit:
+    pattern:  /admin/user/edit/{id}
+    defaults: { _controller: AppBundle:User:edit }
+
+user_switch_active:
+    pattern:  /admin/user/switch-active/{id}
+    defaults: { _controller: AppBundle:User:switchActive }
+
+# Password Reset
+
+user_password_reset_email:
+    pattern:  /password/email
+    defaults: { _controller: AppBundle:Password:email }
+
+user_password_reset:
+    pattern:  /password/reset/{passwordResetKey}
+    defaults: { _controller: AppBundle:Password:reset }
+    requirements:
+        passwordResetKey: "[a-zA-Z0-9]{32}"
+
+user_password_reset_response:
+    pattern:  /password/success
+    defaults: { _controller: AppBundle:Password:resetResponse }
