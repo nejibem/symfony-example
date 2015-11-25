@@ -1,0 +1,15 @@
+---
+# setup dev server
+- name: provision LEMP dev server
+  hosts: dev-server
+  sudo: true
+  user: vagrant
+  vars_files:
+    - vars/dev.yml
+  roles:
+    - common
+    - ssh
+    - php
+    - composer
+    - nginx
+    - mysql

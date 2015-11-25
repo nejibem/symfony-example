@@ -1,0 +1,8 @@
+[local]
+localhost
+
+[dev-server]
+192.168.56.190
+
+[db-server]
+192.168.56.200

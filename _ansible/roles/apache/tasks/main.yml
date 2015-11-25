@@ -1,0 +1,22 @@
+---
+- name: install Apache
+  apt: name=apache2 state=present
+
+- name: install PHP module for Apache
+  apt: name=libapache2-mod-php5 state=present
+
+- name: setup apache site config
+  template: src=site.conf dest=/etc/apache2/sites-available/{{ site_url }}.conf
+  notify: restart apache2
+
+- name: setup apache site config symlink
+  file: src=/etc/apache2/sites-available/{{ site_url }}.conf dest=/etc/apache2/sites-enabled/{{ site_url }}.conf state=link
+  notify: restart apache2
+
+- name: enable modules
+  action: command a2enmod rewrite
+  notify: restart apache2
+
+- name: start Apache
+  service: name=apache2 state=running enabled=yes
+  notify: restart apache2

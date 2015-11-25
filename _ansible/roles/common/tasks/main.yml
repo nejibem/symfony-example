@@ -1,0 +1,24 @@
+---
+- name: update apt cache
+  apt: update_cache=yes
+  
+- name: install vim
+  apt: pkg=vim state=latest
+  
+- name: install curl
+  apt:  pkg=curl state=latest
+
+- name: install git
+  apt:  pkg=git state=latest
+
+- name: install mysql-client
+  apt:  pkg=mysql-client state=latest
+
+- name: Set timezone variables
+  copy: content={{ php_date_timezone }}
+        dest=/etc/timezone
+        owner=root
+        group=root
+        mode=0644
+        backup=yes
+  notify: update timezone

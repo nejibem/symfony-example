@@ -1,0 +1,21 @@
+---
+- name: install mysql
+  apt: pkg=mysql-server state=present
+
+- name: install python mysql packages
+  apt: pkg={{ item }} state=present
+  with_items:
+    - python-dev
+    - python-setuptools
+    - python-mysqldb
+
+- name: create mysql user
+  mysql_user: name={{ database_user }} password={{ database_pass }} priv={{ database_name }}.*:ALL host=% state=present
+
+- name: create mysql database
+  mysql_db: name={{ database_name }} state=present
+
+- name: allow external access to mysql
+  sudo: true
+  lineinfile: dest=/etc/mysql/my.cnf regexp="^bind-address" "line=bind-address = 0.0.0.0"
+  notify: restart mysql

@@ -1,0 +1,54 @@
+---
+- name: ensure site directory
+  action: file dest=/var/www state=directory owner={{ ansible_ssh_user }} group=www-data mode=0775 recurse=yes
+  when: env != 'dev'
+
+- name: git checkout
+  git: repo={{ repo_url }} dest={{ site_root_dir }} remote={{ repo_remote }} version={{ repo_version }} accept_hostkey=yes force=yes
+  sudo: false
+  when: env != 'dev'
+
+- name: setup symfony config dist
+  template: src=parameters.yml dest={{ site_root_dir }}/app/config/parameters.yml.dist.ansible
+  sudo: false
+
+- name: setup symfony config
+  template: src=parameters.yml dest={{ site_root_dir }}/app/config/parameters.yml
+  sudo: false
+
+- name: vendor dir exists
+  stat: path={{ site_root_dir }}/vendor
+  register: vendor
+
+- name: composer install packages
+  command: composer --no-interaction install chdir={{ site_root_dir }}
+  sudo: false
+  when: vendor.stat.exists == False
+
+- name: composer update packages
+  command: composer --no-interaction update chdir={{ site_root_dir }}
+  sudo: false
+  when: vendor.stat.isdir is defined and vendor.stat.isdir and composer == "update"
+
+- name: symfony ensure log directory
+  action: file dest={{ site_root_dir }}/app/logs/ state=directory owner={{ ansible_ssh_user }} group=www-data mode=0775 recurse=yes
+
+- name: symfony ensure cache directory
+  action: file dest={{ site_root_dir }}/app/cache/ state=directory owner={{ ansible_ssh_user }} group=www-data mode=0775 recurse=yes
+
+- name: symfony cache clear
+  command: php app/console cache:clear --env={{ env }} chdir={{ site_root_dir }}
+
+- name: symfony install assets dev
+  command: php app/console assets:install web --symlink --env={{ env }} chdir={{ site_root_dir }}
+  when: env == 'dev'
+
+- name: symfony install assets !dev
+  command: php app/console assets:install web --env={{ env }} chdir={{ site_root_dir }}
+  when: env != 'dev'
+
+- name: symfony dump assets
+  command: php app/console assetic:dump --env={{ env }} chdir={{ site_root_dir }}
+
+- name: doctrine generate migrations
+  command: php app/console doctrine:migrations:migrate --no-interaction --env={{ env }} chdir={{ site_root_dir }}
