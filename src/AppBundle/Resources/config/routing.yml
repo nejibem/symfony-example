@@ -52,6 +52,6 @@ user_password_reset_response:
 # general
 user_info:
     pattern:  /user/{id}
-    defaults: { _controller: AppBundle:Default:userInfoAction }
+    defaults: { _controller: AppBundle:Default:userInfo }
     requirements:
         id:  \d+
