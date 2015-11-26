@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * UserLogin
  *
  * @ORM\Table(name="my_user_login")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\UserLoginRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserLoginRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class UserLogin

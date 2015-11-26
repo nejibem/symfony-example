@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="my_group")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\GroupRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\GroupRepository")
  */
 class Group extends Role
 {

@@ -18,7 +18,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * AppBundle\Entity\User
  *
  * @ORM\Table(name="my_user")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class User implements UserInterface, AdvancedUserInterface, EquatableInterface, \Serializable
