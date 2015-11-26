@@ -13,4 +13,4 @@
     - composer
     - nginx
     - mysql
-#    - deploy-symfony
+    - deploy-symfony
