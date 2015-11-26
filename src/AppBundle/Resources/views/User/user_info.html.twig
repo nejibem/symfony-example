@@ -21,7 +21,9 @@
                     groups:
                     <ul>
                         {% for group in user.getGroups() %}
-                            <li>id: {{ group.getId() }}, group: {{ group.getRole() }}
+                            <li>
+                                <div>id: {{ group.getId() }}</div>
+                                <div>group: {{ group.getRole() }}</div>
                                 <div>
                                     other users in this group:
                                     <ul>
