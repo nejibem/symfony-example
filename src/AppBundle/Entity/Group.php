@@ -124,7 +124,7 @@ class Group extends Role
     /**
      * Remove users
      *
-     * @param \AppBundle\Entity\User $users
+     * @param \AppBundle\Entity\User $user
      */
     public function removeUser(\AppBundle\Entity\User $user)
     {

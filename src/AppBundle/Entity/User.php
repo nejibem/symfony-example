@@ -210,7 +210,7 @@ class User implements UserInterface, AdvancedUserInterface, EquatableInterface, 
      * Set passwordResetKey
      *
      * @param string $passwordResetKey
-     * @return
+     * @return User
      */
     public function setPasswordResetKey($passwordResetKey)
     {
