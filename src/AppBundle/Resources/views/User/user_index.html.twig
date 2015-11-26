@@ -34,12 +34,12 @@
                         <td>{{ user.email }}</td>
                         <td>
                             <a href="/admin/user/switch-active/{{ user.id }}"
-                            class="btn btn-mini btn-{% if user.getIsActive() %}success{% else %}danger{% endif %}">
+                            class="btn btn-xs btn-{% if user.getIsActive() %}success{% else %}danger{% endif %}">
                                 {% if user.getIsActive() %}Active{% else %}Inactive{% endif %}
                             </a>
                         </td>
                         <td><a href="/admin/user/edit/{{ user.id }}"
-                               class="btn btn-mini btn-info">
+                               class="btn btn-xs btn-info">
                                 Edit
                             </a>
                         </td>
