@@ -1,0 +1,6 @@
+services:
+
+    app.authentication.success_handler:
+        class: AppBundle\Service\Authentication\AuthenticationSuccessHandler
+        public: false
+        arguments:  [@router, @doctrine.orm.default_entity_manager]
