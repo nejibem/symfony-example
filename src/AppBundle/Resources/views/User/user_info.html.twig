@@ -27,7 +27,9 @@
                                     other users in this group:
                                     <ul>
                                         {% for user in group.getUsers() %}
-                                            <li>{{ user.getUsername() }}</li>
+                                            <li>
+                                                <a href="{{ path("user_info", {id: user.getId()}) }}">{{ user.getUsername() }}</a>
+                                            </li>
                                         {% endfor %}
                                     </ul>
                                 </div>
@@ -36,7 +38,7 @@
                     </ul>
                 </div>
                 <div>
-                    logins by this user:
+                    logins by this user ({{ user.getUserLogins().count() }}):
                     <ul>
                         {% for login in user.getUserLogins() %}
                             <li>
