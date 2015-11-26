@@ -33,7 +33,7 @@ class UserController extends Controller
         $em->persist($user);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('user_index'));
+        return $this->redirect($this->generateUrl('admin_user_index'));
     }
 
     public function editAction(Request $request, $id)
@@ -64,7 +64,7 @@ class UserController extends Controller
             $this->save($form);
             $this->get('session')->getFlashBag()->add('successMessages', 'Your changes were saved!');
 
-            return $this->redirect($this->generateUrl('user_index'));
+            return $this->redirect($this->generateUrl('admin_user_index'));
         }
 
         return $this->render('AppBundle:User:user_form.html.twig', [
