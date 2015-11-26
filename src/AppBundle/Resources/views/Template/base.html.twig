@@ -17,8 +17,8 @@
     <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-3">
         {% if app.user %}
             <a href="/" class="btn btn-default navbar-btn">Home</a>
-            <a href="/admin/user" class="btn btn-default navbar-btn">User Admin</a>
             <a href="/user/{{ app.user.id }}" class="btn btn-default navbar-btn">User Info</a>
+            <a href="/admin/user" class="btn btn-default navbar-btn">User Admin</a>
             <a href="/logout" class="btn btn-default navbar-btn">Logout</a>
         {% endif %}
     </div>
