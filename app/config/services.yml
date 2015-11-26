@@ -4,6 +4,8 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    app.authentication.success_handler:
+        class: AppBundle\Service\Authentication\AuthenticationSuccessHandler
+        public: false
+        arguments:  ['@router', '@doctrine.orm.default_entity_manager']
