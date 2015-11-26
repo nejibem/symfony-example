@@ -1,0 +1,53 @@
+{% extends 'AppBundle:Template:base.html.twig' %}
+
+{% block title %}
+    Users
+{% endblock %}
+
+{% block body %}
+
+    <div class='row'>
+        <div class='col-md-12'>
+
+            <div class="page-header">
+                <h1>Users</h1>
+            </div>
+
+            <div id="user-info">
+                <h3>Info for {{ user.getUsername() }}</h3>
+                <div>id: {{ user.getId() }}</div>
+                <div>username: {{ user.getUsername() }}</div>
+                <div>
+                    groups:
+                    <ul>
+                        {% for group in user.getGroups() %}
+                            <li>id: {{ group.getId() }}, group: {{ group.getRole() }}
+                                <div>
+                                    other users in this group:
+                                    <ul>
+                                        {% for user in group.getUsers() %}
+                                            <li>{{ user.getUsername() }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div>
+                    logins by this user:
+                    <ul>
+                        {% for login in user.getUserLogins() %}
+                            <li>
+                                <div>ip:{{ login.getIpAddress() }}</div>
+                                <div>datetime: {{ login.getCreatedDate().format('d/m/y H:i:s') }}</div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
