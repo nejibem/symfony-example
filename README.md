@@ -7,6 +7,7 @@ A basic symfony example project showing the use of User Authentication without r
 
 ### Setup
 
+- Install VirtualBox (https://www.virtualbox.org/)
 - Install Vagrant (https://www.vagrantup.com/downloads.html)
 - Install Ansible (http://docs.ansible.com/ansible/intro_installation.html)
 
