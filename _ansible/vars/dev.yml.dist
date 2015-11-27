@@ -10,17 +10,17 @@ php_max_execution_time: 30
 php_upload_max_filesize: 5M
 
 # Nginx
-nginx_upload_max_filesize: 10M
+nginx_upload_max_filesize: 5M
 
 # Symfony
-site_domain: test.local
-site_url: test.local
+site_domain: symfony.local
+site_url: symfony.local
 site_parent_dir: /var/www/
 site_root_dir: /var/www/{{ site_url }}
 
 # Database
-database_name: test
-database_user: test
+database_name: symfony
+database_user: symfony
 database_pass: pass
 database_host: localhost
 
@@ -33,7 +33,7 @@ mailer_encryption: ssl
 mailer_port:       465
 
 # Repository
-repo_url: git@github.com:user/some-repo.com.git
+repo_url: git@github.com:nejibem/symfony-example.git
 repo_remote: origin
 repo_version: master
 
