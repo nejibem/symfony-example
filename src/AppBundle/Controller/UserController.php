@@ -4,13 +4,16 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Form\Type\UserType;
 use AppBundle\Entity\User;
-
 
 class UserController extends Controller
 {
 
+    /**
+     * @Route("/admin/user", name="admin_user_index")
+     */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -23,6 +26,11 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/admin/user/switch-active/{id}", name="admin_user_switch_active", requirements={
+     *     "id": "\d+"
+     * })
+     */
     public function switchActiveAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -36,6 +44,11 @@ class UserController extends Controller
         return $this->redirect($this->generateUrl('admin_user_index'));
     }
 
+    /**
+     * @Route("/admin/user/edit/{id}", name="admin_user_edit", requirements={
+     *     "id": "\d+"
+     * })
+     */
     public function editAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -44,6 +57,9 @@ class UserController extends Controller
         return $this->form($request, $user);
     }
 
+    /**
+     * @Route("/admin/user/add", name="admin_user_add")
+     */
     public function addAction(Request $request)
     {
         return $this->form($request, new User());

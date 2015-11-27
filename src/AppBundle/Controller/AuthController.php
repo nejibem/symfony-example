@@ -5,10 +5,14 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class AuthController extends Controller
 {
 
+    /**
+     * @Route("/login", name="login")
+     */
     public function loginAction(Request $request)
     {
         $session = $request->getSession();

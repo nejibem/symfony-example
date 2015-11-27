@@ -4,12 +4,16 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Form\Type\PasswordType;
 use AppBundle\Entity\User;
 
 class PasswordController extends Controller
 {
 
+    /**
+     * @Route("/password/email", name="user_password_reset_email")
+     */
     public function emailAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -55,23 +59,11 @@ class PasswordController extends Controller
         ]);
     }
 
-    private function sendPasswordResetEmail($user)
-    {
-        $swiftMailer = $this->get('mailer');
-        $mailgunDomain = $this->container->getParameter('mailgun_domain');
-
-        $messageBody = '<p>Dear '. $user->getUsername() .',</p>'
-                      .'<p>To reset your password <a href="http://'. $mailgunDomain .'/password/reset/'. $user->getPasswordResetKey() .'">Click Here</a></p>';
-        $subject = 'Password reset';
-        $message = \Swift_Message::newInstance()
-                        ->setSubject($subject)
-                        ->setFrom('no-reply@'.$mailgunDomain)
-                        ->setTo($user->getEmail())
-                        ->setBody( $messageBody, 'text/html');
-
-        return $swiftMailer->send($message);
-    }
-
+    /**
+     * @Route("/password/reset/{passwordResetKey}", name="user_password_reset", requirements={
+     *     "passwordResetKey": "[a-zA-Z0-9]{32}"
+     * })
+     */
     public function resetResponseAction()
     {
         return $this->render('AppBundle:Password:password_response.html.twig', [
@@ -80,6 +72,9 @@ class PasswordController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/password/success", name="user_password_reset_response")
+     */
     public function resetAction($passwordResetKey)
     {
         $em = $this->getDoctrine()->getManager();
@@ -92,6 +87,23 @@ class PasswordController extends Controller
         {
             return new Response('Unauthorized access.', 403);
         }
+    }
+
+    private function sendPasswordResetEmail($user)
+    {
+        $swiftMailer = $this->get('mailer');
+        $mailgunDomain = $this->container->getParameter('mailgun_domain');
+
+        $messageBody = '<p>Dear '. $user->getUsername() .',</p>'
+            .'<p>To reset your password <a href="http://'. $mailgunDomain .'/password/reset/'. $user->getPasswordResetKey() .'">Click Here</a></p>';
+        $subject = 'Password reset';
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom('no-reply@'.$mailgunDomain)
+            ->setTo($user->getEmail())
+            ->setBody( $messageBody, 'text/html');
+
+        return $swiftMailer->send($message);
     }
 
     private function form(User $user)

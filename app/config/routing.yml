@@ -1,2 +1,10 @@
 app:
-    resource: "@AppBundle/Resources/config/routing.yml"
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+# auth
+logout:
+    path:   /logout
+
+login_check:
+    pattern:  /login_check
