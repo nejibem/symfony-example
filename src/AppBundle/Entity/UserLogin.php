@@ -125,7 +125,6 @@ class UserLogin
         return $this->user;
     }
 
-
     /**
      * @ORM\PrePersist()
      */

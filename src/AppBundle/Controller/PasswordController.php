@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Form\Type\PasswordType;
 use AppBundle\Entity\User;
 
+
 class PasswordController extends Controller
 {
 

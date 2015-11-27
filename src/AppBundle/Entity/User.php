@@ -95,7 +95,6 @@ class User implements UserInterface, AdvancedUserInterface, EquatableInterface, 
      */
     private $userLogins;
 
-
     /**
      *
      */
@@ -107,7 +106,6 @@ class User implements UserInterface, AdvancedUserInterface, EquatableInterface, 
         $this->groups = new ArrayCollection();
         $this->userLogins = new ArrayCollection();
     }
-
 
     /**
      * @param $id
@@ -140,7 +138,6 @@ class User implements UserInterface, AdvancedUserInterface, EquatableInterface, 
     {
         return $this->username;
     }
-
 
     /**
      * @param $salt

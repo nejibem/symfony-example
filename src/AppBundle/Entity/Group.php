@@ -42,7 +42,6 @@ class Group extends Role
         $this->users = new ArrayCollection();
     }
 
-
     /**
      * @param $id
      */
