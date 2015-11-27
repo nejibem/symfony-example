@@ -11,6 +11,9 @@ A basic symfony example project showing the use of User Authentication without r
 - Install Ansible (http://docs.ansible.com/ansible/intro_installation.html)
 
 - Checkout source
+- copy _ansible/vars/dev.yml.dist to _ansible/vars/dev.yml
+- edit any config in this file to suit you project
+
 - cd into root of source
 - run command `vagrant up`
 
