@@ -38,5 +38,5 @@ repo_remote: origin
 repo_version: master
 
 # Ansible
-ansible_ssh_user: vagrant
-ansible_ssh_private_key_file: ''
+# ansible_ssh_user: vagrant
+# ansible_ssh_private_key_file: ''
