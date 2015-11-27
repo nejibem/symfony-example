@@ -7,10 +7,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
-
 use Symfony\Component\Routing\RouterInterface;
 use Doctrine\ORM\EntityManager;
-
 use AppBundle\Entity\UserLogin;
 
 class AuthenticationSuccessHandler extends ContainerAware implements AuthenticationSuccessHandlerInterface
@@ -20,8 +18,8 @@ class AuthenticationSuccessHandler extends ContainerAware implements Authenticat
 
     /**
      * Constructor
-     * @param RouterInterface   $router
-     * @param EntityManager     $em
+     * @param RouterInterface $router
+     * @param EntityManager   $em
      */
     public function __construct(RouterInterface $router, EntityManager $em)
     {
