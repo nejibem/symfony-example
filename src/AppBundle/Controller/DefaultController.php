@@ -13,6 +13,10 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+//        $mail = $this->get('app.mail');
+//        $mail->send('nejibem@gmail.com', 'nejibem@gmail.com', 'subject', 'blaa blaa...');
+
+
         return $this->render('AppBundle:Default:index.html.twig');
     }
 

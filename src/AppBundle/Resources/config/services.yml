@@ -4,3 +4,7 @@ services:
         class: AppBundle\Service\Authentication\AuthenticationSuccessHandler
         public: false
         arguments:  [@router, @doctrine.orm.default_entity_manager]
+
+    app.mail:
+        class: AppBundle\Service\Mail
+        arguments:  [%mailgun_api_key%, %mailgun_domain%]
