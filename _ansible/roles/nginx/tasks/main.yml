@@ -1,0 +1,17 @@
+---
+- name: install nginx
+  apt: pkg=nginx state=latest
+
+- name: setup nginx server config
+  template: src=nginx.conf dest=/etc/nginx/nginx.conf
+
+- name: setup nginx site config
+  template: src=site.conf dest=/etc/nginx/sites-available/{{ site_url }}.conf
+  notify: restart nginx
+
+- name: setup nginx site config symlink
+  file: src=/etc/nginx/sites-available/{{ site_url }}.conf dest=/etc/nginx/sites-enabled/{{ site_url }}.conf state=link
+  notify: restart nginx
+
+- name: delete nginx default site config
+  file: name=/etc/nginx/sites-enabled/default state=absent

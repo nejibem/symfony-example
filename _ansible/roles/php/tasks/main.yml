@@ -1,0 +1,27 @@
+---
+- name: use ondrej/php repo
+  apt_repository: repo=ppa:ondrej/php update_cache=yes
+
+- name: install php packages
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - php7.0
+    - php7.0-cli
+    - php7.0-fpm
+    - php7.0-common
+    - php7.0-curl
+    - php7.0-gd
+    - php7.0-mysql
+    - php7.0-mcrypt
+    - php7.0-xml
+
+- name: setup php cli config
+  template: src=php-7.0.cli.ini dest=/etc/php/7.0/cli/php.ini
+
+- name: setup php fpm config
+  template: src=php-7.0.fpm.ini dest=/etc/php/7.0/fpm/php.ini
+  notify: restart php-fpm
+
+- name: setup fpm pool config
+  template: src=www.conf dest=/etc/php/7.0/fpm/pool.d/www.conf
+  notify: restart php-fpm

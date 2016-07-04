@@ -1,0 +1,11 @@
+---
+# setup dev server
+- name: deploy dev server
+  hosts: dev-server
+  remote_user: vagrant
+  become: true
+  become_method: sudo
+  vars_files:
+    - vars/dev.yml
+  roles:
+    - deploy-symfony

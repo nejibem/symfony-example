@@ -1,0 +1,48 @@
+---
+# Enviroment
+env: dev
+
+# Php
+php_fpm_socket: /var/run/php5-fpm.sock
+php_memory_limit: 128M
+php_date_timezone: Australia/Melbourne
+php_max_execution_time: 30
+php_upload_max_filesize: 5M
+php_session_save_path: /tmp
+
+# Nginx
+nginx_upload_max_filesize: 10M
+
+# Symfony
+site_domain: test.local
+site_url: test.local
+site_parent_dir: /var/www/
+site_root_dir: /var/www/{{ site_url }}
+
+# Database
+database_name: test
+database_user: test
+database_pass: pass
+database_host: localhost
+
+# Mail
+mailer_transport:  smtp
+mailer_host:       smtp.gmail.com
+mailer_user:       someuser@gmail.com
+mailer_password:   pass
+mailer_encryption: ssl
+mailer_port:       465
+
+# Repository
+repo_url: git@github.com:user/some-repo.com.git
+repo_remote: origin
+repo_version: master
+
+# Ansible
+ansible_ssh_user: vagrant
+ansible_ssh_private_key_file: ''
+
+# Rabbitmq
+rabbitmq_user: admin
+rabbitmq_pass: pass
+rabbitmq_vhost: ehubadmin
