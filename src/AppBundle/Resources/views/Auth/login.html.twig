@@ -41,4 +41,27 @@
         </div>
     </div>
 
+    <div class="row">
+        <p>
+            Login with external account.
+        </p>
+        <ul>
+            <li>
+                <a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}">
+                    <span>Facebook</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('hwi_oauth_service_redirect', {'service': 'twitter' }) }}">
+                    <span>Twitter</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('hwi_oauth_service_redirect', {'service': 'google' }) }}">
+                    <span>Google</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
 {% endblock %}

@@ -87,3 +87,29 @@ doctrine_migrations:
     namespace: AppBundle\Migration
     table_name: migration_versions
     name: Application Migrations
+
+
+hwi_oauth:
+    connect:
+        account_connector: ehub.oauth.user_provider
+    firewall_names: [secured_area]
+    resource_owners:
+        facebook:
+            type:           facebook
+            client_id:      302591076795669
+            client_secret:  9f25edf71b0b2004ff83f4cbad8939dc
+            scope:          "email"
+            infos_url:      "https://graph.facebook.com/me?fields=id,name,email,picture.type(large)"
+        twitter:
+            type:           twitter
+            client_id:      mOgX30aNuMMIWsNxyGSSDEnHD
+            client_secret:  eNCmSsdpf4MUrmLGaI5XrpKATLX5K6iXykKPf0cqGHyc9q6GeZ
+            options:
+                include_email: true
+        google:
+            type:           google
+            client_id:      1007499839158-ck5u7074p7u4ae7g15bb7fl2ptp0ehmd.apps.googleusercontent.com
+            client_secret:  xbCQTEkGJR9KW5jaQM1nvKBF
+    http_client:
+        verify_peer: false
+        #proxy: "contsys.local:80"

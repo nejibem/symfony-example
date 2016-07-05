@@ -8,3 +8,7 @@ services:
     app.mail:
         class: AppBundle\Service\Mail
         arguments:  [%mailgun_api_key%, %mailgun_domain%]
+
+    ehub.oauth.user_provider:
+        class: AppBundle\Security\EhubOAuthProvider
+        arguments: ["@doctrine.orm.entity_manager", "@security.encoder_factory"]

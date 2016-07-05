@@ -8,3 +8,25 @@ logout:
 
 login_check:
     pattern:  /login_check
+
+# setup Oauth routes for facebook login
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /login
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix:   /connect
+
+facebook_login:
+    path: /login/check-facebook
+
+twitter_login:
+    path: /login/check-twitter
+
+google_login:
+    path: /login/check-google

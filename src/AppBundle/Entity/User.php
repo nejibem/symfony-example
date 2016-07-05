@@ -31,7 +31,21 @@ class User implements UserInterface, AdvancedUserInterface, EquatableInterface, 
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=25, unique=true)
+     * @var string
+     *
+     * @ORM\Column(name="facebook_id", type="string", length=255, unique=true, nullable=true)
+     */
+    protected $facebookId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter_id", type="string", length=255, unique=true, nullable=true)
+     */
+    protected $twitterId;
+
+    /**
+     * @ORM\Column(type="string", length=55, unique=true)
      */
     private $username;
 
@@ -121,6 +135,38 @@ class User implements UserInterface, AdvancedUserInterface, EquatableInterface, 
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
+    }
+
+    /**
+     * @param string $facebookId
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebookId = $facebookId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTwitterId()
+    {
+        return $this->twitterId;
+    }
+
+    /**
+     * @param string $twitterId
+     */
+    public function setTwitterId($twitterId)
+    {
+        $this->twitterId = $twitterId;
     }
 
     /**

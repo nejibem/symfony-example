@@ -10,12 +10,14 @@ security:
     providers:
         admin:
             entity: { class: AppBundle:User }
+        secured_area_provider:
+            id: ehub.oauth.user_provider
 
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        secured:
+        secured_area:
             pattern:    ^/
             provider:   admin
             anonymous:  ~
@@ -26,7 +28,19 @@ security:
             logout:
                 path:   /logout
                 target: /login
+            #anonymous: ~
+            oauth:
+                resource_owners:
+                    facebook:     "/login/check-facebook"
+                    twitter:      "/login/check-twitter"
+                    google:       "/login/check-google"
+                login_path:   /login
+                use_forward:  false
+                failure_path: /login
+                oauth_user_provider:
+                    service: ehub.oauth.user_provider
 
     access_control:
       - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/connect, roles: IS_AUTHENTICATED_ANONYMOUSLY }
       - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
